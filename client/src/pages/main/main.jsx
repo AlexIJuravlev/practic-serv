@@ -29,8 +29,6 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch);
 	};
 
-	console.log(posts);
-
 	return (
 		<div className={className}>
 			<Search onChange={onSearch} searchPhrase={searchPhrase} />
