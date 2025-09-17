@@ -21,25 +21,24 @@ const UsersContainer = ({ className }) => {
 			return;
 		}
 
-		Promise.all([
-			request('http://localhost:3001/users'),
-			request('http://localhost:3001/users/roles'),
-		]).then(([usersRes, rolesRes]) => {
-			if (usersRes.error || rolesRes.error) {
-				setErrorMessage(usersRes.error || rolesRes.error);
-				return;
-			}
+		Promise.all([request('/api/users'), request('/api/users/roles')]).then(
+			([usersRes, rolesRes]) => {
+				if (usersRes.error || rolesRes.error) {
+					setErrorMessage(usersRes.error || rolesRes.error);
+					return;
+				}
 
-			setUsers(usersRes.data);
-			setRoles(rolesRes.data);
-		});
+				setUsers(usersRes.data);
+				setRoles(rolesRes.data);
+			},
+		);
 	}, [shouldUpdateUserList, userRole]);
 
 	const onUserRemove = (userId) => {
 		if (!checkAccess([ROLE.ADMIN], userRole)) {
 			return;
 		}
-		request(`http://localhost:3001/users/${userId}`, 'DELETE').then(() => {
+		request(`/api/users/${userId}`, 'DELETE').then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
 	};

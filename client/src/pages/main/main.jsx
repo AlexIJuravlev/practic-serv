@@ -14,7 +14,7 @@ const MainContainer = ({ className }) => {
 
 	useEffect(() => {
 		request(
-			`http://localhost:3001/posts?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`,
+			`/api/posts?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`,
 		).then(({ data: { posts, lastPage } }) => {
 			setPosts(posts);
 			setLastPage(lastPage)

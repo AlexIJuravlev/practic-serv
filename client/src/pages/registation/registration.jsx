@@ -59,17 +59,15 @@ const RegistrationContainer = ({ className }) => {
 	useResetForm(reset)
 
 	const onSubmit = ({ login, password }) => {
-		request('http://localhost:3001/register', 'POST', { login, password }).then(
-			({ error, user }) => {
-				if (error) {
-					setServerError(`Ошибка запроса: ${error}`);
-					return;
-				}
+		request('/api/register', 'POST', { login, password }).then(({ error, user }) => {
+			if (error) {
+				setServerError(`Ошибка запроса: ${error}`);
+				return;
+			}
 
-				dispatch(setUser(user));
-				sessionStorage.setItem('userData', JSON.stringify(user));
-			},
-		);
+			dispatch(setUser(user));
+			sessionStorage.setItem('userData', JSON.stringify(user));
+		});
 	};
 
 	const formError = errors?.login?.message || errors?.password?.message || errors?.passcheck?.message;

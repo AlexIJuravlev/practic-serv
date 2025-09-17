@@ -80,5 +80,5 @@ PostCard.propTypes = {
 	title: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
 	commentsCount: PropTypes.number.isRequired,
-	imgUrl: PropTypes.string.isRequired,
+	imageUrl: PropTypes.string.isRequired,
 };
