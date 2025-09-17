@@ -60,7 +60,7 @@ const AuthorizationContainer = ({ className }) => {
 	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
-		request(`api/login`,"POST", {login, password}).then(({ error, user }) => {
+		request(`/api/login`,"POST", {login, password}).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
